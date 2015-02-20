@@ -10,8 +10,8 @@ class StatusesController < ApplicationController
 
   def create
     @status = Status.new(status_params)
+    @status.likes = 0
     if @status.save
-      @status.likes = 0
       redirect_to statuses_path, notice: 'Status was successfully created.'
     else
       render :new
@@ -19,12 +19,15 @@ class StatusesController < ApplicationController
   end
 
   def show
+    @status = Status.find(params[:id])
   end
 
   def edit
+    @status = Status.find(params[:id])
   end
 
   def update
+    @status = Status.find(params[:id])
     if @status.update(status_params)
       redirect_to statuses_path, notice: 'Status was successfully updated.'
     else
@@ -39,8 +42,10 @@ class StatusesController < ApplicationController
   end
 
   def like
-    @status = status.find(params[:id])
-    @status.likes = @status.likes + 1
+    @status = Status.find(params[:id])
+    @status.likes += 1
+    @status.save
+    redirect_to statuses_path
   end
 
   private

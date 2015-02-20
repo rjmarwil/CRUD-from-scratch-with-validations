@@ -1,7 +1,7 @@
 class StatusesController < ApplicationController
 
   def index
-    @statuses = Status.all
+    @statuses = Status.all.order(:likes).reverse
   end
 
   def new

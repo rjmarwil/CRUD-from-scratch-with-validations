@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :status
+  has_many :statuses
 
   validates :user, presence: true
 

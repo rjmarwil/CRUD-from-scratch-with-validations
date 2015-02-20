@@ -24,7 +24,7 @@
         <td><%= link_to status.status, status %></td>
         <td><%= status.user %></td>
         <td><%= status.likes %></td>
-        <td></td>
+        <td><%= button_to "Like", like_status_path(status) %></td>
         <td><%= link_to 'Edit', edit_status_path(status) %></td>
         <td><%= link_to 'Delete', status_path(status), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
